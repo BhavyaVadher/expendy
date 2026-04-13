@@ -2,10 +2,6 @@
 
 {% block title %}Expendly — Track Every Dollar{% endblock %}
 
-{% block head %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css') }}">
-{% endblock %}
-
 {% block content %}
 
 <section class="hero">
@@ -85,34 +81,19 @@
 
 <!-- How it works modal -->
 <div class="modal-overlay" id="how-it-works-modal" aria-hidden="true">
-    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-card modal-video-card" role="dialog" aria-modal="true" aria-label="How it works video">
         <button class="modal-close" id="modal-close-btn" aria-label="Close">&times;</button>
-        <h2 class="modal-title" id="modal-title">How Expendly works</h2>
-        <p class="modal-subtitle">Three steps to full financial clarity.</p>
-        <ol class="modal-steps">
-            <li class="modal-step">
-                <span class="modal-step-num">1</span>
-                <div>
-                    <strong>Create your free account</strong>
-                    <p>Sign up in seconds — no credit card, no subscriptions. Just your email and a password.</p>
-                </div>
-            </li>
-            <li class="modal-step">
-                <span class="modal-step-num">2</span>
-                <div>
-                    <strong>Log your expenses</strong>
-                    <p>Add any expense with a category, amount, and date. Takes less than 10 seconds per entry.</p>
-                </div>
-            </li>
-            <li class="modal-step">
-                <span class="modal-step-num">3</span>
-                <div>
-                    <strong>Understand your spending</strong>
-                    <p>See monthly summaries, category breakdowns, and filter by any date range to spot patterns.</p>
-                </div>
-            </li>
-        </ol>
-        <a href="{{ url_for('register') }}" class="btn-primary">Get started free</a>
+        <div class="modal-video-wrap">
+            <iframe
+                id="how-it-works-iframe"
+                src=""
+                data-src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1&autoplay=1"
+                title="How Expendly works"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+            </iframe>
+        </div>
     </div>
 </div>
 
@@ -148,17 +129,22 @@
 
 {% block scripts %}
 <script>
-    const modal   = document.getElementById('how-it-works-modal');
-    const openBtn = document.getElementById('how-it-works-btn');
+    const modal    = document.getElementById('how-it-works-modal');
+    const iframe   = document.getElementById('how-it-works-iframe');
+    const openBtn  = document.getElementById('how-it-works-btn');
     const closeBtn = document.getElementById('modal-close-btn');
 
     openBtn.addEventListener('click', () => {
+        // Load + autoplay the video only when the modal opens
+        iframe.src = iframe.dataset.src;
         modal.classList.add('is-open');
         modal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
     });
 
     function closeModal() {
+        // Clearing src immediately stops the video (no background audio)
+        iframe.src = '';
         modal.classList.remove('is-open');
         modal.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
