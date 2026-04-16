@@ -1,0 +1,6 @@
+@media (max-width: 480px) {
+    .auth-card {
+        padding: 1.5rem;
+        border-radius: var(--radius-sm);
+    }
+}
