@@ -1,0 +1,12 @@
+.form-hint {
+    font-size: 0.78rem;
+    color: var(--ink-muted);
+    margin-top: 0.3rem;
+}
+
+@media (max-width: 480px) {
+    .auth-card {
+        padding: 1.5rem;
+        border-radius: var(--radius-sm);
+    }
+}
