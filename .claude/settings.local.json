@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "WebSearch"
+      "WebSearch",
+      "Bash(/Users/bhavyavadher/Desktop/expense-tracker/venv/bin/python *)"
     ]
   }
 }
