@@ -32,7 +32,7 @@ def init_db():
             category    TEXT    NOT NULL,
             date        TEXT    NOT NULL,
             description TEXT,
-            created_at  TEXT    DEFAULT (datetime('now'))
+            created_at  TEXT,    DEFAULT (datetime('now'))
         )
     """)
     conn.commit()
